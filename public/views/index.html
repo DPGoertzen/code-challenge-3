@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html ng-app="groceryApp">
+  <head>
+    <meta charset="utf-8">
+    <title>Grocery List</title>
+    <script src="vendors/angular/angular.min.js" charset="utf-8"></script>
+    <script src="scripts/grocery.module.js" charset="utf-8"></script>
+    <script src="scripts/GroceryController.js" charset="utf-8"></script>
+  </head>
+  <body ng-controller="GroceryList as groceryList">
+    <h2>Add Groceries:</h2>
+    <form>
+      Grocery Name:<input type="text" ng-model="groceryList.grocery.name" />
+      Quantity:<input type="number" ng-model="groceryList.grocery.qty" />
+      <input type="submit" ng-click="groceryList.add(groceryList.grocery)" value="add grocery!"/>
+    </form>
+    <h3>Current Groceries:</h3>
+    <ul>
+      <li ng-repeat = "grocery in groceryList.groceries track by $index">
+        {{grocery.name}}, quantity: {{grocery.qty}} <button ng-click="groceryList.remove(grocery)">Remove</button>
+        <form>
+          Update Name:<input type="text" ng-model="grocery.tempName"/>
+          <input type=submit ng-click="groceryList.updateName(grocery)" />
+        </form>
+        <form>
+          Update Quantity:<input type="number" ng-model="grocery.tempQuantity" />
+          <input type=submit ng-click="groceryList.updateQuantity(grocery)" />
+
+        </form>
+      </li>
+    </ul>
+  </body>
+</html>
